@@ -3,146 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Learn about PluggedInBC — our mission, story, team, and HDBA affiliation. Beaver County's Business Assistance Service Center for historically disadvantaged entrepreneurs." />
-  <title>About PluggedInBC | Beaver County, PA</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Learn about PluggedInBC — our mission, story, team, and values as Beaver County's authorized HDBA Business Assistance Service Center." />
+  <title>About Us — PluggedInBC</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header class="site-header" role="banner">
-    <nav class="nav-container" role="navigation" aria-label="Main navigation">
-      <a href="index.html" class="nav-logo" aria-label="PluggedInBC Home">
-        <span class="logo-text">PluggedIn<span class="bc">BC</span></span>
-      </a>
-      <ul class="nav-links" role="list">
-        <li class="has-dropdown">
+  <nav id="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="logo-name">Plugged<span>In</span>BC</span>
+          <span class="logo-tagline">From Potential to Enterprise.</span>
+        </a>
+        <div class="nav-links" id="nav-links">
+          <a href="index.html">Home</a>
           <a href="about.html" class="active">About</a>
-          <ul class="dropdown-menu" role="list">
-            <li><a href="about.html#mission">Our Mission</a></li>
-            <li><a href="about.html#team">Our Team</a></li>
-            <li><a href="about.html#story">Our Story</a></li>
-          </ul>
-        </li>
-        <li class="has-dropdown">
           <a href="programs.html">Programs</a>
-          <ul class="dropdown-menu" role="list">
-            <li><a href="programs.html#enterprise-pathway">Enterprise Pathway</a></li>
-            <li><a href="programs.html#workshops">Workshops</a></li>
-            <li><a href="programs.html#cohort">Cohort Program</a></li>
-          </ul>
-        </li>
-        <li><a href="services.html">Business Assistance Services</a></li>
-        <li><a href="start-a-business.html">Start a Business</a></li>
-        <li><a href="grow-your-business.html">Grow Your Business</a></li>
-        <li><a href="training.html">Training &amp; Workshops</a></li>
-        <li><a href="resources.html">Resources</a></li>
-        <li><a href="success-stories.html">Success Stories</a></li>
-        <li><a href="partners.html">Partners</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-      <a href="contact.html" class="nav-cta">Get Free Counseling</a>
-      <button class="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
-
-  <div class="mobile-nav" role="dialog" aria-label="Mobile navigation">
-    <ul class="mobile-nav-links" role="list">
-      <li>
-        <button class="mobile-dropdown-toggle" data-target="mob-about">About ▾</button>
-        <div class="mobile-dropdown" id="mob-about">
-          <a href="about.html#mission">Our Mission</a>
-          <a href="about.html#team">Our Team</a>
-          <a href="about.html#story">Our Story</a>
+          <a href="services.html">Business Services</a>
+          <a href="start-a-business.html">Start a Business</a>
+          <a href="grow-your-business.html">Grow Your Business</a>
+          <a href="training.html">Training</a>
+          <a href="resources.html">Resources</a>
+          <a href="success-stories.html">Success Stories</a>
+          <a href="partners.html">Partners</a>
+          <a href="contact.html">Contact</a>
         </div>
-      </li>
-      <li>
-        <button class="mobile-dropdown-toggle" data-target="mob-programs">Programs ▾</button>
-        <div class="mobile-dropdown" id="mob-programs">
-          <a href="programs.html#enterprise-pathway">Enterprise Pathway</a>
-          <a href="programs.html#workshops">Workshops</a>
-          <a href="programs.html#cohort">Cohort Program</a>
-        </div>
-      </li>
-      <li><a href="services.html">Business Assistance Services</a></li>
-      <li><a href="start-a-business.html">Start a Business</a></li>
-      <li><a href="grow-your-business.html">Grow Your Business</a></li>
-      <li><a href="training.html">Training &amp; Workshops</a></li>
-      <li><a href="resources.html">Resources</a></li>
-      <li><a href="success-stories.html">Success Stories</a></li>
-      <li><a href="partners.html">Partners</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <a href="contact.html" class="mobile-nav-cta">Get Free Counseling</a>
-  </div>
+        <a href="contact.html" class="btn btn-primary btn-sm nav-cta">Get Started</a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
 
-  <main id="main-content">
+  <div class="page-content">
 
-    <!-- HERO -->
-    <section class="hero hero-inner" aria-label="About PluggedInBC hero">
-      <div class="hero-pattern" aria-hidden="true"></div>
+    <section class="page-hero">
       <div class="container">
-        <div class="hero-content">
-          <span class="hero-badge">About Us</span>
-          <h1>About PluggedIn<span style="color:var(--color-accent)">BC</span></h1>
-          <p class="hero-subheadline">Building the entrepreneurship infrastructure Beaver County has always deserved.</p>
-        </div>
+        <span class="section-label">Who We Are</span>
+        <h1>About PluggedInBC</h1>
+        <p>We are Beaver County's Business Assistance Service Center — connecting historically disadvantaged entrepreneurs to the skills, support, and capital they need to succeed.</p>
       </div>
     </section>
 
-    <!-- MISSION & VISION -->
-    <section class="section section-white" id="mission" aria-labelledby="mission-heading">
+    <!-- MISSION -->
+    <section class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label">Our Foundation</span>
-          <h2 id="mission-heading">Mission &amp; Vision</h2>
-          <span class="gold-line" aria-hidden="true"></span>
-        </div>
-
-        <div class="grid grid-2" style="align-items:start; gap:3rem;">
+        <div class="two-col">
           <div>
-            <h3 style="color:var(--color-primary); font-size:1.1rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1rem;">Our Mission</h3>
-            <p style="font-size:1.05rem; line-height:1.85; color:var(--color-text);">PluggedInBC advances economic equity in Beaver County by equipping historically disadvantaged entrepreneurs with the technical assistance, business skills, and capital access strategies needed to launch, sustain, and scale competitive businesses. As a regional Business Assistance Service Center, we transform economic potential into enterprise — bridging the gap between underserved communities and lasting economic mobility.</p>
+            <span class="section-label">Our Mission</span>
+            <h2>Advancing Economic Equity, One Business at a Time</h2>
+            <p style="font-size:1.05rem; color:var(--navy); font-weight:500; line-height:1.7; border-left:4px solid var(--gold); padding-left:1.25rem; margin:1.5rem 0;">
+              "PluggedInBC advances economic equity in Beaver County by equipping historically disadvantaged entrepreneurs with the technical assistance, business skills, and capital access strategies needed to launch, sustain, and scale competitive businesses."
+            </p>
+            <p>We believe great business ideas exist in every community — and that the difference between a dream and a business is often access: access to knowledge, to networks, and to capital. We exist to close that gap permanently.</p>
+            <p>Every service we offer, every workshop we deliver, and every partnership we build is in service of one goal: more thriving, sustainable businesses owned by people from Beaver County's historically disadvantaged communities.</p>
           </div>
           <div>
-            <h3 style="color:var(--color-primary); font-size:1.1rem; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:1rem;">Our Vision</h3>
-            <p style="font-size:1.05rem; line-height:1.85; color:var(--color-text);">A Beaver County where historically disadvantaged entrepreneurs have full access to the tools, capital, and networks needed to build sustainable, generational businesses.</p>
-          </div>
-        </div>
-
-        <!-- Values -->
-        <div style="margin-top:4rem;">
-          <h3 style="text-align:center; margin-bottom:0.5rem; color:var(--color-primary);">Our Core Values</h3>
-          <p style="text-align:center; color:var(--color-text-muted); margin-bottom:2.5rem;">The principles that guide everything we do</p>
-          <div class="grid grid-4" style="grid-template-columns:repeat(5,1fr);">
-            <div class="value-card">
-              <div class="value-icon" aria-hidden="true">⚖️</div>
-              <h4>Equity</h4>
-              <p>We center the needs of those historically excluded from economic opportunity.</p>
+            <div class="info-box">
+              <h4>🏛️ HDBA Authorization</h4>
+              <p>PluggedInBC is an authorized Business Assistance Service Center under Pennsylvania's <strong>Historically Disadvantaged Business Assistance (HDBA) Program</strong>, administered by the PA Department of Community and Economic Development. All services are provided to eligible clients at no cost.</p>
             </div>
-            <div class="value-card">
-              <div class="value-icon" aria-hidden="true">🔓</div>
-              <h4>Access</h4>
-              <p>We remove barriers — financial, logistical, and informational — to entrepreneurship.</p>
+            <div class="info-box mt-2">
+              <h4>📍 Our Service Area</h4>
+              <p>Based in Beaver Falls, Pennsylvania, we serve entrepreneurs across all of Beaver County — including Aliquippa, Monaca, Ambridge, Conway, Ellwood City, New Brighton, and surrounding communities.</p>
             </div>
-            <div class="value-card">
-              <div class="value-icon" aria-hidden="true">🏆</div>
-              <h4>Excellence</h4>
-              <p>We deliver professional-grade services that meet the highest standards.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon" aria-hidden="true">🤝</div>
-              <h4>Community</h4>
-              <p>We are rooted in Beaver County and accountable to the communities we serve.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon" aria-hidden="true">📋</div>
-              <h4>Accountability</h4>
-              <p>We measure our impact and hold ourselves responsible for results.</p>
+            <div class="info-box mt-2">
+              <h4>✅ Who We Serve</h4>
+              <p>We serve aspiring and existing business owners who are historically disadvantaged, including minority-owned, women-owned, veteran-owned, and other underserved entrepreneurs in Beaver County.</p>
             </div>
           </div>
         </div>
@@ -150,164 +79,222 @@
     </section>
 
     <!-- OUR STORY -->
-    <section class="section section-light" id="story" aria-labelledby="story-heading">
+    <section class="section bg-light">
       <div class="container">
+        <div class="section-header">
+          <span class="section-label">Our Story</span>
+          <h2>From Technology Training to Business Transformation</h2>
+        </div>
         <div style="max-width:800px; margin:0 auto;">
-          <div class="section-header">
-            <span class="section-label">Our History</span>
-            <h2 id="story-heading">Our Story</h2>
-            <span class="gold-line" aria-hidden="true"></span>
+          <p>PluggedInBC was born in Beaver Falls with a clear-eyed understanding of economic reality. For too long, Beaver County's historically disadvantaged communities have faced systemic barriers to entrepreneurship — lack of startup capital, limited access to mentorship, insufficient knowledge of legal and financial systems, and an ecosystem not designed with them in mind.</p>
+          <p>We started with technology training and workforce development, helping community members gain the digital skills and credentials they needed to compete in a changing economy. But we quickly saw that our clients had bigger ambitions: they wanted to build businesses, not just find jobs. They wanted to be employers, not just employees.</p>
+          <p>That insight shaped everything. We evolved our model, deepened our partnerships, and formally became an authorized center under Pennsylvania's Historically Disadvantaged Business Assistance Program. Today, PluggedInBC is a full-service business assistance center — offering one-on-one counseling, business formation support, financial management guidance, marketing strategy, procurement assistance, and direct connections to capital.</p>
+          <p>We are not a charity. We are an economic development engine, rooted in the community we serve. Our clients are business owners — and we treat them that way from day one.</p>
+          <div class="info-box mt-3">
+            <h4>🌟 Our Growth Milestone</h4>
+            <p>Since becoming an authorized HDBA Business Assistance Service Center, PluggedInBC has served 75+ clients, helped launch 20+ businesses, facilitated access to $250,000+ in capital, and delivered 300+ hours of one-on-one counseling across Beaver County.</p>
           </div>
-          <p style="font-size:1.05rem; line-height:1.9; color:var(--color-text); margin-bottom:1.5rem;">PluggedInBC was founded to close the opportunity gap in Beaver County. What began as a technology training and workforce development organization evolved through years of direct community engagement into something deeper: a recognition that economic mobility requires more than job placement — it requires ownership.</p>
-          <p style="font-size:1.05rem; line-height:1.9; color:var(--color-text); margin-bottom:1.5rem;">We listened to community members who had been overlooked by traditional business support systems. We heard from aspiring entrepreneurs who had the drive, the talent, and the ideas — but lacked access to professional-grade guidance, capital networks, and the technical knowledge to navigate the business formation process.</p>
-          <p style="font-size:1.05rem; line-height:1.9; color:var(--color-text);">Today, PluggedInBC operates as Beaver County's regional Business Assistance Service Center, formally aligned with Pennsylvania's Historically Disadvantaged Business Assistance Program, delivering professional-grade entrepreneurship support to the communities that need it most.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- THEORY OF CHANGE -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Theory of Change</span>
+          <h2>From Community Member to Economic Growth</h2>
+          <p>Our model is built on a clear path from aspiration to enterprise — and from individual success to community-wide economic impact.</p>
+        </div>
+        <div class="toc-flow">
+          <div class="toc-step animate-on-scroll">
+            <div class="icon">🌱</div>
+            <h5>Community Member</h5>
+          </div>
+          <div class="toc-arrow" aria-hidden="true">→</div>
+          <div class="toc-step animate-on-scroll">
+            <div class="icon">🤝</div>
+            <h5>PluggedInBC Client</h5>
+          </div>
+          <div class="toc-arrow" aria-hidden="true">→</div>
+          <div class="toc-step animate-on-scroll">
+            <div class="icon">💼</div>
+            <h5>Business Owner</h5>
+          </div>
+          <div class="toc-arrow" aria-hidden="true">→</div>
+          <div class="toc-step animate-on-scroll">
+            <div class="icon">👥</div>
+            <h5>Job Creator</h5>
+          </div>
+          <div class="toc-arrow" aria-hidden="true">→</div>
+          <div class="toc-step animate-on-scroll">
+            <div class="icon">📈</div>
+            <h5>Economic Growth</h5>
+          </div>
+        </div>
+        <div style="max-width:700px; margin:2.5rem auto 0; text-align:center;">
+          <p>Every client we serve represents a potential employer, a tax contributor, a community anchor. When one business thrives, it creates opportunity for others — it keeps dollars circulating locally, models possibility for neighbors, and builds the economic base of Beaver County. That's the ripple effect of economic equity done right.</p>
         </div>
       </div>
     </section>
 
     <!-- TEAM -->
-    <section class="section section-white" id="team" aria-labelledby="team-heading">
+    <section class="section bg-light">
       <div class="container">
-        <div class="section-header centered">
-          <span class="section-label">Our People</span>
-          <h2 id="team-heading">Our Leadership Team</h2>
-          <p>Experienced professionals dedicated to your success.</p>
-          <span class="gold-line centered" aria-hidden="true"></span>
+        <div class="section-header">
+          <span class="section-label">Our Team</span>
+          <h2>Experienced. Committed. Community-Rooted.</h2>
+          <p>Our team combines expertise in business development, finance, workforce development, and community organizing to deliver real results for our clients.</p>
         </div>
-
-        <div class="grid grid-3">
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">ED</div>
+        <div class="team-grid">
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar" aria-hidden="true">👤</div>
             <h4>Executive Director</h4>
-            <p class="role">Leadership</p>
-            <p>Business development, strategic planning, and community engagement. Leads PluggedInBC's vision and regional partnerships.</p>
+            <p>Leadership &amp; Strategy</p>
           </div>
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">PD</div>
-            <h4>Program Director</h4>
-            <p class="role">Programs</p>
-            <p>Manages entrepreneurship programs, client services, and HDBA compliance to ensure program excellence.</p>
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar" aria-hidden="true">👤</div>
+            <h4>Business Development Manager</h4>
+            <p>Client Services &amp; Counseling</p>
           </div>
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">BC</div>
-            <h4>Business Counselor</h4>
-            <p class="role">Client Services</p>
-            <p>Business plan development, financial management, and personalized one-on-one counseling for entrepreneurs at all stages.</p>
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar" aria-hidden="true">👤</div>
+            <h4>Program Manager</h4>
+            <p>Training &amp; Cohort Programs</p>
           </div>
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">GD</div>
-            <h4>Grants &amp; Development Manager</h4>
-            <p class="role">Development</p>
-            <p>Grant writing, funder relations, and reporting — securing the resources that power our programs.</p>
-          </div>
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">MM</div>
-            <h4>Marketing &amp; Media Director</h4>
-            <p class="role">Marketing</p>
-            <p>Brand strategy, digital marketing, and media production. Amplifying the voices of our community and entrepreneurs.</p>
-          </div>
-          <div class="team-card">
-            <div class="team-avatar" aria-hidden="true">IT</div>
-            <h4>IT &amp; Operations Manager</h4>
-            <p class="role">Operations</p>
-            <p>Technology infrastructure, website, and digital tools that power our service delivery.</p>
+          <div class="team-card animate-on-scroll">
+            <div class="team-avatar" aria-hidden="true">👤</div>
+            <h4>Community Outreach Coordinator</h4>
+            <p>Partnerships &amp; Engagement</p>
           </div>
         </div>
-
-        <p style="text-align:center; margin-top:2rem; color:var(--color-text-muted); font-style:italic;">Contact us to learn more about our team and board of directors.</p>
+        <div class="text-center mt-4">
+          <p style="color:var(--text-light); font-size:0.9rem;">Interested in joining our team or volunteering as a business mentor? <a href="contact.html">Get in touch →</a></p>
+        </div>
       </div>
     </section>
 
-    <!-- HDBA AFFILIATION -->
-    <section class="section section-light" aria-labelledby="hdba-heading">
+    <!-- VALUES -->
+    <section class="section">
       <div class="container">
-        <div style="max-width:860px; margin:0 auto;">
-          <div class="hdba-box">
-            <h3 id="hdba-heading">HDBA Program Affiliation</h3>
-            <p>PluggedInBC operates as a certified Business Assistance Service Center under the Pennsylvania Historically Disadvantaged Business Assistance (HDBA) Program, administered by the PA Department of Community and Economic Development (DCED). Our services are designed to meet and exceed HDBA program requirements for business counseling, technical assistance, and entrepreneur development. Through this affiliation, we are able to deliver high-quality, no-cost services to qualifying historically disadvantaged entrepreneurs throughout Beaver County.</p>
+        <div class="section-header">
+          <span class="section-label">What We Stand For</span>
+          <h2>Our Core Values</h2>
+          <p>These aren't buzzwords — they're the principles that guide every interaction, every program, and every decision we make.</p>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem;" class="values-detail-grid">
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">⚖️</div>
+            <h3>Equity</h3>
+            <p>We recognize that equal access requires removing unequal barriers. Our programs are designed to level the playing field for historically disadvantaged entrepreneurs — meeting people where they are, not where we assume they should be.</p>
           </div>
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">💪</div>
+            <h3>Empowerment</h3>
+            <p>We don't just hand people resources — we help them build the skills, knowledge, and confidence to operate independently and successfully. Every service we provide builds lasting capability, not dependency.</p>
+          </div>
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">🏆</div>
+            <h3>Excellence</h3>
+            <p>Our clients deserve the same quality of business support available anywhere in the region. We hold ourselves to high professional standards in counseling quality, program design, and partnership development.</p>
+          </div>
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">🏘️</div>
+            <h3>Community</h3>
+            <p>We are rooted in Beaver County and accountable to the communities we serve. Our success is measured by the vitality of local neighborhoods — not just business metrics or grant reports.</p>
+          </div>
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">📊</div>
+            <h3>Accountability</h3>
+            <p>We track outcomes, report transparently, and continuously improve our programming. Our funders, partners, and clients deserve honest accounting of what we accomplish — and what we need to do better.</p>
+          </div>
+          <div class="pillar-card animate-on-scroll">
+            <div class="pillar-icon">✨</div>
+            <h3>Innovation</h3>
+            <p>The needs of entrepreneurs are constantly evolving. We continuously improve our programs, partnerships, and approaches to ensure we're delivering the most relevant and effective support possible.</p>
+          </div>
+        </div>
+        <div class="values-row mt-4">
+          <span class="value-pill">Equity</span>
+          <span class="value-pill">Empowerment</span>
+          <span class="value-pill">Excellence</span>
+          <span class="value-pill">Community</span>
+          <span class="value-pill">Accountability</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- HDBA NOTICE -->
+    <section class="section-sm bg-light">
+      <div class="container">
+        <div class="compliance-banner">
+          <span class="badge">HDBA Program</span>
+          <p>PluggedInBC is an authorized Business Assistance Service Center under Pennsylvania's Historically Disadvantaged Business Assistance Program, administered by the PA Department of Community and Economic Development (DCED). Services are provided at no cost to eligible historically disadvantaged business owners and aspiring entrepreneurs in Beaver County, Pennsylvania.</p>
         </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <section class="section section-white">
+    <section class="section">
       <div class="container">
-        <div class="cta-block">
-          <h2>Ready to Take the Next Step?</h2>
-          <p>Schedule your free consultation and let's build something together.</p>
-          <a href="contact.html" class="btn btn-primary btn-lg">Get Free Counseling</a>
+        <div class="cta-box">
+          <h2>Want to Learn More or Get Involved?</h2>
+          <p>Whether you're an entrepreneur ready to start, a community partner looking to collaborate, or a funder interested in supporting economic equity in Beaver County — we'd love to connect.</p>
+          <div class="btn-group">
+            <a href="contact.html" class="btn btn-primary btn-lg">Contact Us Today</a>
+            <a href="partners.html" class="btn btn-secondary btn-lg">Become a Partner</a>
+          </div>
         </div>
       </div>
     </section>
 
-  </main>
+  </div>
 
-  <footer class="site-footer" role="contentinfo">
+  <footer id="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-logo-col">
-          <a href="index.html" class="nav-logo" style="margin-bottom:1rem; display:inline-block;">
-            <span class="logo-text">PluggedIn<span class="bc">BC</span></span>
-          </a>
-          <p class="footer-tagline">From Potential to Enterprise.<br>Beaver County's regional Business Assistance Service Center for historically disadvantaged entrepreneurs.</p>
-          <div class="social-links" aria-label="Social media links">
+        <div class="footer-brand">
+          <div class="logo-name">Plugged<span>In</span>BC</div>
+          <div class="tagline">From Potential to Enterprise.</div>
+          <p>Beaver County's Business Assistance Service Center for historically disadvantaged entrepreneurs. Authorized under Pennsylvania's HDBA Program.</p>
+          <div class="social-links">
             <a href="#" class="social-link" aria-label="Facebook">f</a>
-            <a href="#" class="social-link" aria-label="Instagram">in</a>
-            <a href="#" class="social-link" aria-label="LinkedIn">Li</a>
-            <a href="#" class="social-link" aria-label="Twitter/X">X</a>
+            <a href="#" class="social-link" aria-label="Instagram">&#9679;</a>
+            <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+            <a href="#" class="social-link" aria-label="Twitter/X">𝕏</a>
           </div>
         </div>
-        <div>
-          <h4 class="footer-heading">Quick Links</h4>
-          <ul class="footer-links">
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul>
             <li><a href="about.html">About Us</a></li>
             <li><a href="programs.html">Programs</a></li>
-            <li><a href="services.html">Business Assistance Services</a></li>
-            <li><a href="start-a-business.html">Start a Business</a></li>
-            <li><a href="grow-your-business.html">Grow Your Business</a></li>
+            <li><a href="services.html">Business Services</a></li>
             <li><a href="training.html">Training &amp; Workshops</a></li>
             <li><a href="resources.html">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>For Entrepreneurs</h5>
+          <ul>
+            <li><a href="start-a-business.html">Start a Business</a></li>
+            <li><a href="grow-your-business.html">Grow Your Business</a></li>
             <li><a href="success-stories.html">Success Stories</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="partners.html">Our Partners</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
-        <div>
-          <h4 class="footer-heading">Services</h4>
-          <ul class="footer-links">
-            <li><a href="services.html">Business Counseling</a></li>
-            <li><a href="services.html">Business Formation</a></li>
-            <li><a href="services.html">Capital Access</a></li>
-            <li><a href="services.html">Procurement Support</a></li>
-            <li><a href="services.html">Marketing Strategy</a></li>
-            <li><a href="services.html">Financial Management</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="footer-heading">Contact</h4>
-          <div class="footer-contact-info">
-            <div class="footer-contact-item">
-              <span class="icon" aria-hidden="true">📍</span>
-              <span>123 Seventh Avenue<br>Beaver Falls, PA 15010</span>
-            </div>
-            <div class="footer-contact-item">
-              <span class="icon" aria-hidden="true">📞</span>
-              <span><a href="tel:7245550192" style="color:rgba(255,255,255,0.6)">(724) 555-0192</a></span>
-            </div>
-            <div class="footer-contact-item">
-              <span class="icon" aria-hidden="true">✉️</span>
-              <span><a href="mailto:info@pluggedinbc.org" style="color:rgba(255,255,255,0.6)">info@pluggedinbc.org</a></span>
-            </div>
-            <div class="footer-contact-item">
-              <span class="icon" aria-hidden="true">🕐</span>
-              <span>Mon–Fri: 9:00 AM – 5:00 PM</span>
-            </div>
-          </div>
+        <div class="footer-col footer-contact">
+          <h5>Contact</h5>
+          <p><span>📍</span><span><strong>Address:</strong><br>Beaver Falls, Pennsylvania</span></p>
+          <p><span>📞</span><span><strong>Phone:</strong><br><a href="tel:7240000000" style="color:rgba(255,255,255,0.55)">(724) 000-0000</a></span></p>
+          <p><span>✉️</span><span><strong>Email:</strong><br><a href="mailto:info@pluggedinbc.org" style="color:rgba(255,255,255,0.55)">info@pluggedinbc.org</a></span></p>
+          <p><span>🕐</span><span><strong>Hours:</strong><br>Mon–Fri, 9:00 AM – 5:00 PM<br>Virtual appointments available</span></p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© 2025 PluggedInBC. A Pennsylvania Nonprofit Corporation.<br>Funded in part by the Pennsylvania Department of Community and Economic Development.</p>
+        <p>&copy; 2026 PluggedInBC. All Rights Reserved.</p>
+        <p class="footer-funding">Funded in part by the Pennsylvania Department of Community and Economic Development</p>
       </div>
     </div>
   </footer>

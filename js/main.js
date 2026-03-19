@@ -1,301 +1,257 @@
 /* ============================================================
    PluggedInBC — Main JavaScript
-   main.js
+   Features:
+     - Mobile nav toggle
+     - Scroll-based nav class
+     - Counter animation (IntersectionObserver)
+     - FAQ accordion
+     - Form submission handler
+     - Smooth scroll (CSS handles it; JS handles edge cases)
+     - Active nav link highlighting
+     - Animate-on-scroll elements
+     - Newsletter form handler
    ============================================================ */
 
 (function () {
   'use strict';
 
-  /* ----------------------------------------------------------
-     1. STICKY HEADER SHADOW
-     ---------------------------------------------------------- */
-  const header = document.querySelector('.site-header');
-  if (header) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }, { passive: true });
-  }
+  /* ── Utility: DOM query helpers ─────────────────────────── */
+  const $  = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  /* ----------------------------------------------------------
-     2. MOBILE MENU TOGGLE
-     ---------------------------------------------------------- */
-  const navToggle = document.querySelector('.nav-toggle');
-  const mobileNav = document.querySelector('.mobile-nav');
+  /* ── 1. Mobile Nav Toggle ───────────────────────────────── */
+  function initNav() {
+    const nav       = $('#site-nav');
+    const hamburger = $('.nav-hamburger');
+    const navLinks  = $('.nav-links');
 
-  if (navToggle && mobileNav) {
-    navToggle.addEventListener('click', () => {
-      const isOpen = navToggle.classList.toggle('open');
-      mobileNav.classList.toggle('open', isOpen);
+    if (!nav || !hamburger || !navLinks) return;
+
+    // Toggle menu
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen);
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
-    // Close mobile nav when a link is clicked
-    mobileNav.querySelectorAll('a').forEach(link => {
+    // Close menu on link click
+    $$('a', navLinks).forEach(link => {
       link.addEventListener('click', () => {
-        navToggle.classList.remove('open');
-        mobileNav.classList.remove('open');
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       });
     });
-  }
 
-  /* ----------------------------------------------------------
-     3. MOBILE DROPDOWN TOGGLES
-     ---------------------------------------------------------- */
-  document.querySelectorAll('.mobile-dropdown-toggle').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-target');
-      const dropdown = document.getElementById(targetId);
-      if (dropdown) {
-        dropdown.classList.toggle('open');
+    // Close menu on outside click
+    document.addEventListener('click', (e) => {
+      if (!nav.contains(e.target) && navLinks.classList.contains('open')) {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       }
     });
-  });
 
-  /* ----------------------------------------------------------
-     4. DESKTOP DROPDOWN — close on outside click / Escape
-     ---------------------------------------------------------- */
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      document.querySelectorAll('.has-dropdown.open').forEach(el => {
-        el.classList.remove('open');
-      });
+    // Scroll-based nav styling
+    function handleScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
     }
-  });
-
-  /* ----------------------------------------------------------
-     5. ACTIVE NAV LINK
-     ---------------------------------------------------------- */
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-
-  document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-      link.classList.add('active');
-    }
-  });
-
-  /* ----------------------------------------------------------
-     6. COUNTER ANIMATION
-     ---------------------------------------------------------- */
-  function animateCounter(element) {
-    const target = parseFloat(element.getAttribute('data-target'));
-    const suffix = element.getAttribute('data-suffix') || '';
-    const prefix = element.getAttribute('data-prefix') || '';
-    const duration = 2000; // ms
-    const startTime = performance.now();
-
-    function update(currentTime) {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = Math.round(eased * target);
-
-      if (Number.isInteger(target)) {
-        element.textContent = prefix + current.toLocaleString() + suffix;
-      } else {
-        element.textContent = prefix + (eased * target).toFixed(0) + suffix;
-      }
-
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        element.textContent = prefix + target.toLocaleString() + suffix;
-      }
-    }
-
-    requestAnimationFrame(update);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
   }
 
-  // Intersection Observer for counters
-  const counterElements = document.querySelectorAll('[data-counter]');
-  if (counterElements.length > 0) {
-    const counterObserver = new IntersectionObserver((entries) => {
+  /* ── 2. Active Nav Link ─────────────────────────────────── */
+  function initActiveNav() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+    $$('.nav-links a').forEach(link => {
+      const href = (link.getAttribute('href') || '').split('/').pop();
+      if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  /* ── 3. Counter Animation ───────────────────────────────── */
+  function initCounters() {
+    const counters = $$('[data-count]');
+    if (!counters.length) return;
+
+    const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+
+    function animateCounter(el) {
+      const target   = parseFloat(el.dataset.count);
+      const suffix   = el.dataset.suffix || '';
+      const prefix   = el.dataset.prefix || '';
+      const duration = 1800;
+      const start    = performance.now();
+      const isDecimal = target % 1 !== 0;
+
+      function step(now) {
+        const elapsed  = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased    = easeOut(progress);
+        const current  = target * eased;
+        el.textContent = prefix + (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+        el.classList.add('counting');
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = prefix + (isDecimal ? target.toFixed(1) : target) + suffix;
+          el.classList.remove('counting');
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-          entry.target.classList.add('counted');
+        if (entry.isIntersecting && !entry.target.dataset.animated) {
+          entry.target.dataset.animated = 'true';
           animateCounter(entry.target);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.3 });
 
-    counterElements.forEach(el => counterObserver.observe(el));
+    counters.forEach(el => observer.observe(el));
   }
 
-  /* ----------------------------------------------------------
-     7. SMOOTH SCROLL — all anchor links
-     ---------------------------------------------------------- */
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId === '#') return;
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
+  /* ── 4. FAQ Accordion ───────────────────────────────────── */
+  function initAccordion() {
+    $$('.faq-item').forEach(item => {
+      const question = $('.faq-question', item);
+      if (!question) return;
+
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // Close all items (single-open mode)
+        $$('.faq-item.open').forEach(openItem => {
+          if (openItem !== item) openItem.classList.remove('open');
+        });
+
+        item.classList.toggle('open', !isOpen);
+      });
+
+      // Keyboard accessibility
+      question.setAttribute('tabindex', '0');
+      question.setAttribute('role', 'button');
+      question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          question.click();
+        }
+      });
+    });
+  }
+
+  /* ── 5. Form Submission Handler ─────────────────────────── */
+  function initForms() {
+    // Main contact / intake form
+    const contactForm = $('#contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const navHeight = header ? header.offsetHeight : 0;
-        const top = targetEl.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
-    });
-  });
-
-  /* ----------------------------------------------------------
-     8. CONTACT FORM VALIDATION & SUCCESS
-     ---------------------------------------------------------- */
-  const contactForm = document.getElementById('contact-form');
-  const formSuccess = document.getElementById('form-success');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      let isValid = true;
-
-      // Clear previous errors
-      this.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-      this.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
-
-      // Required fields
-      const requiredFields = this.querySelectorAll('[required]');
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          isValid = false;
-          field.classList.add('error');
-          const errorEl = field.parentElement.querySelector('.form-error');
-          if (errorEl) errorEl.classList.add('visible');
-        }
-      });
-
-      // Email validation
-      const emailField = this.querySelector('input[type="email"]');
-      if (emailField && emailField.value.trim()) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(emailField.value.trim())) {
-          isValid = false;
-          emailField.classList.add('error');
-          const errorEl = emailField.parentElement.querySelector('.form-error');
-          if (errorEl) {
-            errorEl.textContent = 'Please enter a valid email address.';
-            errorEl.classList.add('visible');
-          }
-        }
-      }
-
-      if (isValid) {
-        // Hide form, show success
+        const successMsg = $('#contact-success');
         contactForm.style.display = 'none';
-        if (formSuccess) {
-          formSuccess.classList.add('visible');
-          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      } else {
-        // Scroll to first error
-        const firstError = this.querySelector('.error');
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          firstError.focus();
-        }
-      }
-    });
+        if (successMsg) successMsg.classList.add('show');
+        window.scrollTo({ top: contactForm.parentElement.offsetTop - 100, behavior: 'smooth' });
+      });
+    }
 
-    // Live validation — remove error class on input
-    contactForm.querySelectorAll('input, select, textarea').forEach(field => {
-      field.addEventListener('input', function () {
-        if (this.classList.contains('error') && this.value.trim()) {
-          this.classList.remove('error');
-          const errorEl = this.parentElement.querySelector('.form-error');
-          if (errorEl) errorEl.classList.remove('visible');
+    // Newsletter form
+    $$('.newsletter-form').forEach(form => {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = $('input', form);
+        const btn   = $('button', form);
+        if (btn) {
+          btn.textContent = 'Subscribed!';
+          btn.disabled = true;
+          btn.style.background = '#4caf50';
+          btn.style.borderColor = '#4caf50';
         }
+        if (input) input.value = '';
       });
     });
-  }
 
-  /* ----------------------------------------------------------
-     9. PARTNER INQUIRY FORM VALIDATION
-     ---------------------------------------------------------- */
-  const partnerForm = document.getElementById('partner-form');
-  const partnerSuccess = document.getElementById('partner-form-success');
-
-  if (partnerForm) {
-    partnerForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      let isValid = true;
-
-      this.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-      this.querySelectorAll('.form-error').forEach(el => el.classList.remove('visible'));
-
-      const requiredFields = this.querySelectorAll('[required]');
-      requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-          isValid = false;
-          field.classList.add('error');
-          const errorEl = field.parentElement.querySelector('.form-error');
-          if (errorEl) errorEl.classList.add('visible');
-        }
+    // Request workshop form
+    const workshopReqForm = $('#workshop-request-form');
+    if (workshopReqForm) {
+      workshopReqForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const successMsg = $('#workshop-request-success');
+        workshopReqForm.style.display = 'none';
+        if (successMsg) successMsg.classList.add('show');
       });
+    }
 
-      if (isValid) {
+    // Partner contact form
+    const partnerForm = $('#partner-form');
+    if (partnerForm) {
+      partnerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const successMsg = $('#partner-success');
         partnerForm.style.display = 'none';
-        if (partnerSuccess) {
-          partnerSuccess.classList.add('visible');
-          partnerSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      }
-    });
+        if (successMsg) successMsg.classList.add('show');
+      });
+    }
   }
 
-  /* ----------------------------------------------------------
-     10. FAQ ACCORDION
-     ---------------------------------------------------------- */
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const item = this.closest('.faq-item');
-      const isOpen = item.classList.contains('open');
+  /* ── 6. Animate on Scroll ───────────────────────────────── */
+  function initScrollAnimations() {
+    const elements = $$('.animate-on-scroll');
+    if (!elements.length) return;
 
-      // Close all
-      document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-
-      // Open clicked (if it wasn't already open)
-      if (!isOpen) {
-        item.classList.add('open');
-      }
-    });
-  });
-
-  /* ----------------------------------------------------------
-     11. SCROLL REVEAL — subtle fade-in on scroll
-     ---------------------------------------------------------- */
-  const revealElements = document.querySelectorAll('.reveal');
-  if (revealElements.length > 0) {
-    const revealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    elements.forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
   }
 
-  /* ----------------------------------------------------------
-     12. WINDOW RESIZE — close mobile menu on expand
-     ---------------------------------------------------------- */
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      if (window.innerWidth > 768) {
-        if (navToggle) navToggle.classList.remove('open');
-        if (mobileNav) mobileNav.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    }, 100);
-  });
+  /* ── 7. Smooth Scroll for Anchor Links ──────────────────── */
+  function initSmoothScroll() {
+    $$('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const targetId = anchor.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const navHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
+          const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  }
+
+  /* ── 8. Initialize everything on DOM ready ──────────────── */
+  function init() {
+    initNav();
+    initActiveNav();
+    initCounters();
+    initAccordion();
+    initForms();
+    initScrollAnimations();
+    initSmoothScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();
